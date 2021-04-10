@@ -35,12 +35,18 @@ pipeline {
         }
         stage ('Test') {
             steps {
-                echo "Todo"
+                pwsh(script: """
+                    cd python-test/
+                    python3 ping.py
+                    """)
             }
         }
         stage ('End container') {
             steps {
-                pwsh(script: 'docker-compose down')
+                pwsh(script: """
+                    cd ../
+                    docker-compose down
+                    """)
 
             }
         }
