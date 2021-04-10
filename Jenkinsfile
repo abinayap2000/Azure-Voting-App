@@ -7,7 +7,6 @@ pipeline {
                 echo "$GIT_BRANCH"
             }
         }
-
         stage ('Build Docker image') {
 
             steps {
@@ -18,6 +17,31 @@ pipeline {
                     docker build -t azure-vote-jenkins .
                     cd..
                 """)
+            }
+        }
+        stage ('Start container') {
+            steps {
+                pwsh(script 'docker-compose up -d')
+
+            }
+            post {
+                success {
+                    echo "App started with success!"
+                }
+                failure {
+                    echo "App not started!"
+                }
+            }
+        }
+        stage ('Test') {
+            steps {
+                echo "Todo"
+            }
+        }
+        stage ('Start container') {
+            steps {
+                pwsh(script 'docker-compose down')
+
             }
         }
     }
