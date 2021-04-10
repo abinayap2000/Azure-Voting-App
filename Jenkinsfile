@@ -21,7 +21,7 @@ pipeline {
         }
         stage ('Start container') {
             steps {
-                pwsh(script 'docker-compose up -d')
+                pwsh(script: 'docker-compose up -d')
 
             }
             post {
@@ -40,7 +40,7 @@ pipeline {
         }
         stage ('Start container') {
             steps {
-                pwsh(script 'docker-compose down')
+                pwsh(script: 'docker-compose down')
 
             }
         }
