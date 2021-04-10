@@ -38,7 +38,7 @@ pipeline {
                 echo "Todo"
             }
         }
-        stage ('Start container') {
+        stage ('End container') {
             steps {
                 pwsh(script: 'docker-compose down')
 
