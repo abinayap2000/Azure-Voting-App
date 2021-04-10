@@ -44,7 +44,7 @@ pipeline {
         stage ('End container') {
             steps {
                 pwsh(script: """
-                    cd ../
+                    cd ..
                     docker-compose down
                     """)
 
